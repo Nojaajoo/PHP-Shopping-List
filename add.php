@@ -9,9 +9,8 @@ $amount = filter_var($input->amount,FILTER_SANITIZE_NUMBER_INT);
 try {
     $db = openDB();
 
-    $query = $db->prepare("insert into item(description) values (:description)");
+    $query = $db->prepare("insert into item(description,amount) values (:description,:amount)");
     $query->bindValue(":description",$description,PDO::PARAM_STR);
-    $query = $db->prepare("insert into item(amount) values (:amount)");
     $query->bindValue(":amount",$amount,PDO::PARAM_INT);
     $query->execute();
 
